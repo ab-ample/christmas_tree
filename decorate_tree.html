@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.12.0/paper-full.min.js"></script>
+    <script type="text/paperscript" canvas="myCanvas">
+        var ancho = window.innerWidth;
+        var alto = window.innerHeight;
+
+        var from = new Point(0, 0);
+        var to = new Point(ancho, alto);
+
+        var path = new Path.Rectangle({
+            from: from,
+            to: to,
+            fillColor: {
+                gradient: {
+                    stops: ['black', 'blue']
+                },
+                origin: from,
+                destination: [0, alto]
+            }
+        });
+
+        //tree
+
+        var myPath = new Path();
+        myPath.fillColor = 'green';
+        myPath.strokeColor = 'green';
+
+        myPath.add(new Point(ancho/2, 40));
+        myPath.add(new Point(ancho/5, alto/3));
+        
+        myPath.add(new Point(ancho/14+(ancho/4), alto/3));
+        myPath.add(new Point(ancho/7, alto/1.6));
+
+        myPath.add(new Point(ancho/12+(ancho/6), alto/1.6));
+        myPath.add(new Point(ancho/9, alto/1.1));
+
+        myPath.add(new Point(ancho/2, alto/1.1));
+
+        //other side
+
+        myPath.add(new Point((ancho/2), 40));
+        myPath.add(new Point(ancho-(ancho/5), alto/3));
+        
+        myPath.add(new Point(ancho-(ancho/14+(ancho/4)), alto/3));
+        myPath.add(new Point(ancho-(ancho/7), alto/1.6));
+
+        myPath.add(new Point(ancho-(ancho/12+(ancho/6)), alto/1.6));
+        myPath.add(new Point(ancho-(ancho/9), alto/1.1));
+
+        myPath.add(new Point(ancho/2, alto/1.1));
+
+        myPath.closed = true;
+
+        //star
+
+        var center = new Point(ancho/2, 50);
+        var points = 8;
+        var radius1 = 10;
+        var radius2 = 40;
+        var path = new Path.Star(center, points, radius1, radius2);
+        path.fillColor = 'yellow';
+
+        //decoration
+
+        tool.minDistance = 20;
+        var i = 0;
+        var colors = ["red", "blue", "yellow", "white"]
+        function onMouseDrag(event) {
+            var star = new Path.Star({
+                center: event.middlePoint,
+                points: 12,
+                radius1: 10,
+                radius2: event.delta.length / 2,
+                fillColor: 'black'
+            });
+
+            if (i >= 4){
+                i = 0;
+            }
+            star.fillColor = colors[i];
+            i = i + 1;
+        }
+                
+    </script>
+</head>
+<body>
+    <canvas id="myCanvas">
+
+    </canvas>
+    <script>
+        var can = document.getElementById("myCanvas");
+        can.style.width = window.innerWidth + "px";
+        can.style.height = window.innerHeight + "px";
+    </script>
+</body>
+</html>
