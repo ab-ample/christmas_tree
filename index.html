@@ -62,13 +62,7 @@
 
         myPath.closed = true;
 
-        myPath.fillColor = {
-            gradient: {
-                stops: [['green', 0.01], ['#104e00', 1]],
-            },
-            origin: path.position,
-            destination: path.bounds.rightCenter
-        };
+        myPath.fillColor = 'green';
 
         //star
 
@@ -78,32 +72,6 @@
         var radius2 = 40;
         var star = new Path.Star(center, points, radius1, radius2);
         star.fillColor = 'yellow';
-
-        //get orientation info
-        if (window.DeviceOrientationEvent) 
-        {
-            window.addEventListener("deviceorientation", function () 
-            {
-                processGyro(event.beta);  
-            }, true);
-        } 
-
-
-        function processGyro(beta)
-        {
-            console.log(Math.sin(beta) * 0.5);
-
-            if (beta != 0){
-                path.fillColor = {
-                    gradient: {
-                        // 0.0 hasta 1.0
-                        stops: [['blue', Math.sin(beta * 8) * 0.1 + 0.8], ['black', Math.sin(beta * 2) * 0.1 + 0.2]],
-                    },
-                    origin: 0,
-                    destination: [0, alto]
-                };
-            }
-        }
 
         //decoration
 
