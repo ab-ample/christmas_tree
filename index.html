@@ -91,15 +91,15 @@
 
         function processGyro(beta)
         {
-            console.log(beta);
+            console.log(Math.sin(beta) * 0.5);
 
             if (beta != 0){
                 path.fillColor = {
                     gradient: {
                         // 0.0 hasta 1.0
-                        stops: [['blue', Math.sin(beta * 5) * 0.1 + 0.8], ['black', Math.sin(beta * 3) * 0.1 + 0.3]],
+                        stops: [['blue', Math.sin(beta * 8) * 0.1 + 0.8], ['black', Math.sin(beta * 2) * 0.1 + 0.2]],
                     },
-                    origin: from,
+                    origin: 0,
                     destination: [0, alto]
                 };
             }
