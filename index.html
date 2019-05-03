@@ -10,6 +10,28 @@
             overflow: hidden;
             margin: 0;
             padding: 0;
+            font-family: helvetica, arial;
+            background: linear-gradient(black, blue);
+        }
+
+        #tutorial{
+        	position: fixed;
+        	bottom: 50%;
+        	left: 50%;
+        	transform: translate(-50%, -50%);
+        	width: 220px;
+        	padding: 15px;
+        	border: 1px solid white;
+        	border-radius: 10px;
+        	font-size: 18px;
+        	line-height: 22px;
+        	color: white;
+        	cursor: pointer;
+        	background: linear-gradient(grey, lightgrey, grey);
+        }
+
+        #myCanvas{
+        	cursor: crosshair;
         }
     </style>
     <script type="text/javascript" src="paper-full.min.js"></script>
@@ -139,13 +161,31 @@
     </script>
 </head>
 <body>
+	<div id="tutorial">Click and Drag to decorate your christmas tree!</div>
     <canvas id="myCanvas">
 
     </canvas>
     <script>
+    	/* CANVAS */
         var can = document.getElementById("myCanvas");
         can.style.width = window.innerWidth + "px";
         can.style.height = window.innerHeight + "px";
+
+        /* NOTIFICATION */
+        document.getElementById("tutorial").animate([
+		// keyframes
+			{ opacity: '0' },
+			{ opacity: '1' } 
+		  
+		], { 
+			// timing options
+			easing: "ease-in-out",
+			duration: 1000,
+		 	iterations: 1
+		});
+        document.getElementById("tutorial").addEventListener("click", function(){
+    		this.style.display = "none";
+    	})
     </script>
 </body>
 </html>
