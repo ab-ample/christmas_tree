@@ -162,9 +162,9 @@
 </head>
 <body>
 	<div id="tutorial">Click and Drag to decorate your christmas tree!</div>
-    <canvas id="myCanvas">
+    	<canvas id="myCanvas">
 
-    </canvas>
+    	</canvas>
     <script>
     	/* CANVAS */
         var can = document.getElementById("myCanvas");
@@ -184,8 +184,8 @@
 		 	iterations: 1
 		});
         document.getElementById("tutorial").addEventListener("click", function(){
-    		this.style.display = "none";
-    	})
+    		document.getElementById("tutorial").style.display = "none";
+    	});
     </script>
 </body>
 </html>
